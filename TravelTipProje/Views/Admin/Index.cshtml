@@ -1,0 +1,32 @@
+﻿@using TravelTipProje.Models.Siniflar
+ @model List<Blog>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Blog Listesi</h2>
+<br />
+<table class="table table-bordered">
+    <tr>
+        <th>ID</th>
+        <th>Başlık</th>
+        <th>Tarih</th>
+        <th>Sil</th>
+        <th>Güncelle</th>
+        <th>Detaylar</th>
+    </tr>
+    @foreach(var item in Model)
+    {
+    <tr>
+        <th>@item.ID</th>
+        <td>@item.Baslik</td>
+        <td>@(((DateTime)item.Tarih).ToString("dd-MMM-yyyy"))</td>
+        <td><a href="/Admin/BlogSil/@item.ID" class="btn btn-danger">Sil</a></td>
+        <td><a href="/Admin/BlogGetir/@item.ID" class="btn btn-success">Güncelle</a></td>
+        <td><a href="/Blog/BlogDetay/@item.ID" class="btn btn-primary">Detaylar</a></td>
+    </tr>
+    }
+</table>
+<a href="/Admin/YeniBlog/" class="btn btn-primary">Ekle</a>
+
